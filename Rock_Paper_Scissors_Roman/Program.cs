@@ -21,27 +21,23 @@ namespace Rock_Paper_Scissors_Roman
 
             while(userWins < 3 && computerWins < 3)
             {
-                Console.WriteLine("Choose an option: ");
+                Console.WriteLine("Write an option: ");
                 Console.WriteLine("1. Rock");
                 Console.WriteLine("2. Paper");
                 Console.WriteLine("3. Scissors");
 
                 computerChoice = random.Next(0, 2);
 
-                userInput = Console.ReadLine();
-                userInput.ToLowerInvariant();
+                userInput = Console.ReadLine().ToLowerInvariant();
 
                 Console.Clear();
 
-                if (userInput == null || userInput == "")
+                if (string.IsNullOrWhiteSpace(userInput) || userInput != "rock" && userInput != "paper" && userInput != "scissors")
                 {
                     Console.WriteLine("Invalid input, try again");
                     Console.ReadKey(true);
-                }
-                else if (userInput != "rock" && userInput != "paper" && userInput != "scissors")
-                {
-                    Console.WriteLine("Invalid input, try again");
-                    Console.ReadKey(true);
+                    Console.Clear();
+                    continue;
                 }
                 else if (option[computerChoice] == userInput)
                 {
@@ -80,11 +76,13 @@ namespace Rock_Paper_Scissors_Roman
             if(userWins == 3)
             {
                 Console.WriteLine("You are the winner! Score is " + userWins + " - " + computerWins);
+                Console.ReadKey(true);
             }
 
             if(computerWins == 3)
             {
                 Console.WriteLine("Computer is the winner! Score is " + userWins + " - " + computerWins);
+                Console.ReadKey(true);
             }
         }
 
